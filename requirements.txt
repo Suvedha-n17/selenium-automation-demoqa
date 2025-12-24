@@ -1,0 +1,7 @@
+selenium
+webdriver-manager>=4.0.2
+behave
+allure-behave
+requests
+invoke
+pydantic>=2.7.1

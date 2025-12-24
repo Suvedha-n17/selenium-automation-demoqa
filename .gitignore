@@ -1,0 +1,6 @@
+**/allure-report/
+**/logs/
+**/.idea/
+**/venv/
+**/allure-results/
+**/screenshots/*
