@@ -50,14 +50,12 @@ This framework emphasizes maintainability and flexibility, following modern auto
 │   ├── logger.py           # Custom logging utility
 ├── logs   # Captures and stores logs
 │   ├── test.log  # Captures test execution logs
-├── reports   # Folder to capture allure report related details
-│   ├── allure-results/  # Allure results folder
-│   ├── allure-report/   # Allure report folder
+├── allure-results/  # Allure results folder
+├── allure-report/   # Allure report folder
 ├── .gitignore           # Git ignore file
 ├── requirements.txt  # List of dependencies
 ├── README.md          # Project documentation
-└── miscellaneous            # miscellaneous files
-     ├── result_demoqa.PNG 
+└── ├── result_demoqa.PNG # Execution report
 
 
 ---
