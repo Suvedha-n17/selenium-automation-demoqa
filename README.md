@@ -61,14 +61,15 @@ This framework emphasizes maintainability and flexibility, following modern auto
 
 
 ---
-| Requirement ID | Description                                                                                                                 | Test Case ID        | 🟢 Additional detailing covered in test cases                                                                 |
-|----------------|-----------------------------------------------------------------------------------------------------------------------------|---------------------|---------------------------------------------------------------------------------------------------------------|
-| REQ-1.a        | Navigate to Elements > Checkbox. Dynamically expand the tree at all levels.                                                | TC001               | Dynamically expand the tree at all levels                                                                      |
-| REQ-1.b        | Tick a parent node and dynamically assert that all nested elements have correct icons                                      | TC002		        | Validate checkbox selection for parent node with child hierarchy                                        		|
-| REQ-2.a        | Navigate to Elements > Dynamic Properties. Wait for button with text “Visible after 5 seconds”                             | TC003               | Verify button becomes visible after 5 seconds implemented with fluent waits                                                                |
-| REQ-2.b        | Load the page and verify that the second button changes color after some time                                              | TC004               | Load the page and verify that the second button changes color after some time                                                                |
-| REQ-3          | Navigate to Forms > Practice Forms. Implement test scenarios for field validation                                          | TC005, TC006, TC007 | Form validation that includes happy path and negative field testing              |
-| REQ-4          | Navigate to Book Store Application. Validate displayed book data against API                                              | TC008               | Validate book list displayed in UI against API using comparsion of both data                                                   |
+| Requirement ID | Description                                                                                                 | Test Case ID        | 🟢 Additional detailing covered in test cases               |
+| -------------- | ----------------------------------------------------------------------------------------------------------- | ------------------- | ----------------------------------------------------------- |
+| **REQ-1.a**    | Navigate to **Elements → Checkbox** and dynamically expand the tree at all levels                           | TC001               | Dynamic expansion of checkbox tree at all hierarchy levels  |
+| **REQ-1.b**    | Select a parent node and dynamically validate that all nested elements display correct icons                | TC002               | Checkbox selection validation for parent-child hierarchy    |
+| **REQ-2.a**    | Navigate to **Elements → Dynamic Properties** and wait for the button with text *“Visible after 5 seconds”* | TC003               | Verification of delayed visibility using fluent waits       |
+| **REQ-2.b**    | Load the page and verify that the second button changes color after a delay                                 | TC004               | Dynamic color change validation after page load             |
+| **REQ-3**      | Navigate to **Forms → Practice Forms** and implement field validation scenarios                             | TC005, TC006, TC007 | Form validation covering happy path and negative test cases |
+| **REQ-4**      | Navigate to **Book Store Application** and validate UI book data against API                                | TC008               | UI vs API data comparison for book list validation          |
+
 
 
 ## ⚙️ Pre-requisites and set up 
@@ -137,10 +138,43 @@ In order to generate allure report, the **allure CLI** needs to be set up in you
 allure --version
 ```
 If you see version output, hurray! No additional steps required. Execute the following command to generate allure report.
-#### 🟢 Generate Allure Report-to Run Behave Tests with Allure Formatter
+### Run tests with Allure formatter
 ```bash
 behave -f allure_behave.formatter:AllureFormatter -o allure-results
 ```
+
+### Generate report
+```bash
+allure generate allure-results -o allure-report --clean
+```
+
+### Open report
+```bash
+allure open allure-report
+```
+
+---
+
+## 🚫 Ignored Files & Folders
+The following are excluded via `.gitignore`:
+- `venv/`
+- `logs/`
+- `screenshots/`
+- `allure-results/`
+- `allure-report/`
+- `.idea/`
+
+---
+```
+## 🧪 Application Under Test
+**DEMOQA Website**  
+Automation framework implemented to validate UI functionality using Selenium and Behave.
+
+---
+
+## 👤 Author
+Suvedha Nedumaran
+---
 
 🔴 If allure CLI is not installed. You could do the following steps to install the same.
 #### 🛠️ Allure CLI Installation on Windows
@@ -159,7 +193,7 @@ behave -f allure_behave.formatter:AllureFormatter -o allure-results
 ### Allure execution report
 ![Allure Report](result_demoqa.png)
 
-The Allure report provides a comprehensive view with pass/fail statistics, execution timeline, detailed step breakdowns, and automatic screenshot attachments for failures.
+The Allure report provides a comprehensive view with pass/fail statistics, execution timeline, detailed step breakdowns, and automatic screenshot attachments for each step.
 
 
 ---
