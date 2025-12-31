@@ -1,5 +1,5 @@
 # Automation Framework (Python + Selenium + Behave)
-Automation of DEMOQA site testing using Selenium and Page Object Model
+Automation of DEMOQA site testing using Selenium and Page Object Model.
 
 ---
 
@@ -15,7 +15,7 @@ Automation of DEMOQA site testing using Selenium and Page Object Model
 ## 📁 Project Structure
 ```
 /demoqa_automation
-├── features/              
+├── features/              # Main project directory
 │   ├── steps/             # Step definitions for Behave
 │   │   ├── base_steps.py  
 │   │   ├── book_store_steps.py  
@@ -31,69 +31,44 @@ Automation of DEMOQA site testing using Selenium and Page Object Model
 │   ├── base_page.py        # Common methods for all pages
 │   ├── book_store_page.py  
 │   ├── checkbox_page.py    
-│   ├── dynamic_properties_page.py    
+│   ├── dynamic_properties_page.py   
 │   ├── forms_page.py    
 ├── utils   # Utility modules and helper functions
-│   ├── logger.py           
-├── logs   # Captures and stores logs
+│   ├── logger.py           # Custom logging utility
+├── logs   
 │   ├── test.log  # Captures test execution logs
 ├── allure-results/  # Allure results folder
 ├── allure-report/   # Allure report folder
-├── .gitignore           
+├── .gitignore           # Git ignore file
 ├── requirements.txt  # List of dependencies
-├── README.md          # Project documentation
+├── README.md          
 └── ├── result_demoqa.PNG # Execution report
+```
 
----
 ## ⚙️ Getting Started
-
-# 1️⃣ # Clone repository
+# Clone repository
 git clone https://github.com/Suvedha-n17/selenium-automation-demoqa.git
-
 # Install virtual environment
 python -m venv venv
-
 # Activate virtual environment
 source venv/bin/activate  
-
 # Install dependencies
 pip install -r requirements.txt
-
----
-### 2️⃣ Python Installation
-Ensure **Python 3.8+** is installed. Verify python version by executing:
-python --version
-
-### 3️⃣ Check and upgrade `pip`
-
-Ensure your `pip` version is **24.0.0 or higher** before installing dependencies.
-
-#### Check current `pip` version:
-pip --version
-
-#### Upgrade `pip` if necessary:
-python -m pip install --upgrade pip
-
-## Steps for Execution 
-
+```
+```
+### ⚙️ Execution Steps
 ### 📄To run all feature file- From the project root:
-
  behave 
  
 ### 📄To run specific feature file
-
  behave features/forms.feature"
-
  behave features/checkbox.feature"
-
  behave features/dynamic_properties.feature"
-
  behave features/book_store.feature"
-
----
-
+```
+```
 ### 📊 Viewing reports
-Install [Allure]: https://allurereport.org/docs/#_get_started from the official website
+Install [Allure](https://allurereport.org/docs/#_get_started) from the official website
 
 Execute the following command to generate allure report.
 ### To run tests with Allure formatter
@@ -104,20 +79,8 @@ allure generate allure-results -o allure-report --clean
 
 ### Open report
 allure open allure-report
-
----
-
-## 🚫 Ignored Files & Folders
-The following are excluded via `.gitignore`:
-- `venv/`
-- `logs/`
-- `screenshots/`
-- `allure-results/`
-- `allure-report/`
-- `.idea/`
-
----
+```
+```
 ### Allure execution report
-View Allure test results
-<img width="1918" height="972" alt="result" src="https://github.com/user-attachments/assets/7bdad0f7-6cb8-4df4-ad20-46349f650e3c" />
+View [Allure test results] (https://github.com/Suvedha-n17/selenium-automation-demoqa/blob/master/result_demoqa.png)
 
