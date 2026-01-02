@@ -9,11 +9,9 @@ class BookStorePage(BasePage):
         self.driver = driver
         self.wait = WebDriverWait(driver, timeout=15, poll_frequency=1)
 
-        # Each book row
-
     BOOK_ROWS = "//div[@class='rt-tr-group']"
 
-    # Cells in order: Title, Author, Publisher, ISBN (if displayed)
+    # Cells in order: Title, Author
     BOOK_TITLE_CELL = ".//div[@class='rt-td'][2]"
     BOOK_AUTHOR_CELL = ".//div[@class='rt-td'][3]"
     BOOK_PUBLISHER_CELL = ".//div[@class='rt-td'][4]"

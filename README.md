@@ -59,8 +59,8 @@ pip install -r requirements.txt
 ```
 ## Running Tests
 ```
-To run all feature file- From the project root:
-behave
+To run all feature file with Allure formatter- From the project root:
+behave -f allure_behave.formatter:AllureFormatter -o allure-results
 
 To run specific feature file
 
@@ -69,8 +69,6 @@ behave features/checkbox.feature"
 behave features/dynamic_properties.feature"
 behave features/book_store.feature"
 
-To run tests with Allure formatter
-behave -f allure_behave.formatter:AllureFormatter -o allure-results
 
 ```
 ## Viewing reports

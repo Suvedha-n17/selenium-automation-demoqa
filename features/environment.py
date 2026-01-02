@@ -25,7 +25,15 @@ def before_all(context):
     """Initialize project paths and load configuration"""
     logger.info("Starting test execution...")
 
+    # Project root
     context.base_dir = os.getcwd()
+
+    # ---------- ALLURE RESULTS ----------
+    context.allure_results_dir = os.path.join(context.base_dir, "allure-results")
+    os.makedirs(context.allure_results_dir, exist_ok=True)
+    logger.info(f"Allure results directory ready: {context.allure_results_dir}")
+
+    # ---------- SCREENSHOTS ----------
     context.screenshots_dir = os.path.join(context.base_dir, "screenshots")
     os.makedirs(context.screenshots_dir, exist_ok=True)
 
@@ -35,7 +43,7 @@ def before_all(context):
             os.remove(os.path.join(context.screenshots_dir, file))
     logger.info("Old screenshots cleaned")
 
-    # Load config
+    # ---------- LOAD CONFIG ----------
     config_path = os.path.join(context.base_dir, "config", "config.json")
     if not os.path.exists(config_path):
         raise FileNotFoundError(f"Config file not found: {config_path}")
@@ -52,6 +60,7 @@ def before_scenario(context, scenario):
     try:
         options = Options()
         options.add_argument("--start-maximized")
+
         context.driver = webdriver.Chrome(options=options)
         context.driver.implicitly_wait(5)
 
@@ -76,10 +85,9 @@ def after_step(context, step):
             return
 
         status = step.status.name.lower()
-
-        # Only include timestamp for failed steps to avoid duplicates
         timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S") if status == "failed" else ""
-        safe_step_name = valid_filename(step.name.replace(' ', '_'))
+        safe_step_name = valid_filename(step.name.replace(" ", "_"))
+
         screenshot_name = f"{safe_step_name}_{status}"
         if timestamp:
             screenshot_name += f"_{timestamp}"
@@ -88,11 +96,9 @@ def after_step(context, step):
         screenshot_path = os.path.join(context.screenshots_dir, screenshot_name)
         context.driver.save_screenshot(screenshot_path)
 
-        # places step name in the Allure attachment as well
-        attachment_name = valid_filename(f"{step.name} [{status}]")
         allure.attach.file(
             screenshot_path,
-            name=attachment_name,
+            name=valid_filename(f"{step.name} [{status}]"),
             attachment_type=allure.attachment_type.PNG
         )
 
@@ -120,5 +126,4 @@ def after_scenario(context, scenario):
 
 # ---------------------- AFTER ALL ----------------------
 def after_all(context):
-    """Optional: finalize test execution"""
     logger.info("All scenarios completed. Test execution finished.")

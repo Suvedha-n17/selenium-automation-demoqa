@@ -4,3 +4,5 @@
 **/venv/
 **/allure-results/
 **/screenshots/*
+__pycache__/
+*.py[cod]
