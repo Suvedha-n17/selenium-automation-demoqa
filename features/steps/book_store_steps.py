@@ -15,7 +15,6 @@ def step_get_books_ui(context):
 
         for row in rows:
             title = row.find_element(By.XPATH, context.book_store_page.BOOK_TITLE_CELL).text.strip()
-            # 🔴 Skip empty rows
             if not title:
                 continue
             book = {

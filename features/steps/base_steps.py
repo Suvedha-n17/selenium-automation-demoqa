@@ -51,10 +51,10 @@ def step_verify_option_under_menu(context, menu_name):
     """Verify that the Elements menu has the expected items."""
     try:
         for row in context.table:
-            item = row["Items"]
-            element = context.base_page.is_element_displayed(context.base_page.ELEMENTS_MENU.format(item))
-            assert element, f"{item} menu not displayed"
-            logger.info(f"Verified presence of the menu: {item}")
+            option = row["Options"]
+            element = context.base_page.is_element_displayed(context.base_page.ELEMENTS_MENU.format(option))
+            assert element, f"{option} menu not displayed"
+            logger.info(f"Verified presence of the menu: {option}")
     except Exception:
         logger.exception("One or more items not displayed")
         raise

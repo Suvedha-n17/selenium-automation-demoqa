@@ -7,7 +7,7 @@ from utils.logger import get_logger
 
 logger = get_logger(__name__)
 
-@when('the user clicks on the "{field_name}" button')
+@when('the user "{field_name}" the form')
 def step_click_submit(context, field_name):
     try:
         context.base_page.click(context.forms_page.FIELD_BY_ID.format(field_name))
@@ -16,21 +16,24 @@ def step_click_submit(context, field_name):
         logger.exception(f"Failed to click on '{field_name}' button: {e}")
         raise
 
-@then('the "{field_name}" field should be highlighted as invalid')
-def step_validate_first_name(context, field_name):
+@then('the below fields should indicate invalid state')
+def step_validate_first_name(context):
     try:
-        field = context.base_page.find_element(By.XPATH,context.forms_page.FIELD_BY_ID.format(field_name))
-        context.forms_page.validate_field_invalid(field, field_name)
-        logger.info(f"Field '{field_name}' highlighted as invalid")
+        for row in context.table:
+            field_name = row["FieldName"]
+            logger.info(f"Verifying invalid state for field: {field_name}")
+            field = context.base_page.find_element(By.XPATH, context.forms_page.FIELD_BY_ID.format(field_name))
+            context.forms_page.validate_field_invalid(field, field_name)
+            logger.info(f"Field '{field_name}' highlighted as invalid")
     except Exception:
         logger.exception(f"Failed to validate '{field_name}' field")
         raise
 
-@when('the user enters "{field_value}" in the "{field_name}" field')
-def step_enter_first_name(context, field_value, field_name):
+@when('the user provides "{value}" in the "{field_name}" field')
+def step_enter_first_name(context, value, field_name):
     try:
         field = context.base_page.find_element(By.XPATH,context.forms_page.FIELD_BY_ID.format(field_name))
-        field.send_keys(field_value)
+        field.send_keys(value)
         logger.info(f"User entered value in :'{field_name}' successfully ")
     except Exception:
         logger.exception(f"Failed to enter value in '{field_name}' field")
@@ -49,7 +52,7 @@ def step_select_gender(context, gender_option):
         logger.exception(f"Failed to select gender as :'{gender_option}' ")
         raise
 
-@then('a modal with title "{message}" should be displayed')
+@then('a confirmation modal titled "{message}" should appear')
 def step_verify_modal_title(context, message):
     try:
         modal_title = context.base_page.find_element(By.XPATH,context.forms_page.SUCCESS_MODAL_TITLE).text
@@ -59,7 +62,7 @@ def step_verify_modal_title(context, message):
         logger.exception("Modal title verification failed")
         raise
 
-@then("upon submission modal window should display the following data")
+@then("the submission summary should display the following information")
 def step_verify_submitted_data(context):
     """Verify that the modal window displays the correct data."""
     try:

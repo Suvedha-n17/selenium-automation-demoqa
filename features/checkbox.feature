@@ -7,7 +7,7 @@ Feature: Checkbox Tree Validation
     Then verify user is navigated to "https://demoqa.com/elements" page
     Then expand "Elements" card
     Then all options should be displayed under "Elements"
-      | Items                 |
+      | Options               |
       | Text Box              |
       | Check Box             |
       | Radio Button          |
@@ -20,7 +20,7 @@ Feature: Checkbox Tree Validation
     Then the user selects "Check Box" section under "Elements"
     Then the "Home" checkbox should be displayed
 
-    Scenario: TC001_Dynamically expand the tree at all levels
+  Scenario: TC001_Dynamically expand the tree at all levels
     Then the user expands the tree at all levels using "Expand all"
     Then all nodes below should be displayed
       | Options        |

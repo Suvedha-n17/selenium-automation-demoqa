@@ -7,7 +7,7 @@ Feature: Dynamic properties validation
     Then verify user is navigated to "https://demoqa.com/elements" page
     Then expand "Elements" card
     Then all options should be displayed under "Elements"
-      | Items                 |
+      | Options               |
       | Text Box              |
       | Check Box             |
       | Radio Button          |
@@ -20,11 +20,11 @@ Feature: Dynamic properties validation
     Then the user selects "Dynamic Properties" section under "Elements"
     Then verify user is navigated to "https://demoqa.com/dynamic-properties" page
 
-    Scenario: TC003_Verify button becomes visible after 5 seconds
-    Then the user should fluently wait until the button with text "Visible After 5 Seconds" becomes visible
+  Scenario: TC003_Verify button becomes visible after 5 seconds
+    Then the user waits until the button labeled "Visible After 5 Seconds" is displayed
 
-    Scenario: TC004_Load the page and verify that the second button changes color after some time
-    Given the user fetches initial "color" of the button
-    And the user fluently wait until the button color changes
-    And the user fetches the changed "color" of the button
-    Then user asserts if the color of the button has been changed
+  Scenario: TC004_Verify delayed color transition of the second button
+    Given the initial "color" of the button is recorded by the user
+    And the user waits for the button color transition
+    And the user captures the modified "color" value
+    Then the updated color should not match the original

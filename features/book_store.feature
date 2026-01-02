@@ -5,7 +5,7 @@ Feature: Validate book store module
     And the user navigate to "Book Store Application" section
     Then expand "Book Store Application" card
     Then all options should be displayed under "Book Store Application"
-      | Items          |
+      | Options        |
       | Login          |
       | Book Store     |
       | Profile        |

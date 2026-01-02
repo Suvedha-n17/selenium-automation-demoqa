@@ -5,37 +5,41 @@ Feature: Validate fields in forms
     And the user navigate to "Forms" section
     Then expand "Forms" card
     Then all options should be displayed under "Forms"
-      | Items         |
+      | Options       |
       | Practice Form |
     Then the user selects "Practice Form" section under "Forms"
     Then verify user is navigated to "https://demoqa.com/automation-practice-form" page
 
   Scenario: TC005_Validate mandatory fields on empty submission
-    When the user clicks on the "submit" button
-    Then the "firstName" field should be highlighted as invalid
-    And the "lastName" field should be highlighted as invalid
-    And the "userNumber" field should be highlighted as invalid
+    When the user "submit" the form
+    Then the below fields should indicate invalid state
+      | FieldName  |
+      | firstName  |
+      | lastName   |
+      | userNumber |
 
   Scenario: TC006_Validate email and mobile number field with invalid format
-    When the user enters "John" in the "firstName" field
-    And the user enters "Doe" in the "lastName" field
-    And the user enters "john.doe@invalid" in the "userEmail" field
+    When the user provides "John" in the "firstName" field
+    And the user provides "Doe" in the "lastName" field
+    And the user provides "john.doe@invalid" in the "userEmail" field
+    And the user provides "1234567" in the "userNumber" field
     And the user selects Gender as "Male"
-    And the user enters "1234" in the "userNumber" field
-    When the user clicks on the "submit" button
-    Then the "userEmail" field should be highlighted as invalid
-    And the "userNumber" field should be highlighted as invalid
+    When the user "submit" the form
+    Then the below fields should indicate invalid state
+      | FieldName  |
+      | userEmail  |
+      | userNumber |
 
   Scenario: TC007_User submits the form successfully with all valid details
-    When the user enters "John" in the "firstName" field
-    And the user enters "Doe" in the "lastName" field
-    And the user enters "john.doe@test.com" in the "userEmail" field
+    When the user provides "John" in the "firstName" field
+    And the user provides "Doe" in the "lastName" field
+    And the user provides "john.doe@test.com" in the "userEmail" field
     And the user selects Gender as "Male"
-    And the user enters "1234567890" in the "userNumber" field
-    And the user enters "Chennai" in the "currentAddress" field
-    And the user clicks on the "submit" button
-    Then a modal with title "Thanks for submitting the form" should be displayed
-    Then upon submission modal window should display the following data
+    And the user provides "1234567890" in the "userNumber" field
+    And the user provides "Chennai" in the "currentAddress" field
+    And the user "submit" the form
+    Then a confirmation modal titled "Thanks for submitting the form" should appear
+    Then the submission summary should display the following information
       | Label         | Value             |
       | Student Name  | John Doe          |
       | Student Email | john.doe@test.com |
