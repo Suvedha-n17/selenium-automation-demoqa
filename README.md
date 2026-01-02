@@ -57,7 +57,22 @@ source venv/bin/activate
 # Install dependencies
 pip install -r requirements.txt
 ```
+## Running Tests
+```
+To run all feature file- From the project root:
+behave
 
+To run specific feature file
+
+behave features/forms.feature"
+behave features/checkbox.feature"
+behave features/dynamic_properties.feature"
+behave features/book_store.feature"
+
+To run tests with Allure formatter
+behave -f allure_behave.formatter:AllureFormatter -o allure-results
+
+```
 ## Viewing reports
 - Install [**Allure**](https://docs.qameta.io/allure/#_get_started) from the official website
 - Generate Allure report
