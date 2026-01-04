@@ -25,15 +25,15 @@ selenium-automation-demoqa/
 │   ├── dynamic_properties.feature  
 │   ├── forms.feature       
 │   ├── environment.py   
-├── pages  # Page Object Model (POM) implementation
+├── pages  
 │   ├── base_page.py        
 │   ├── book_store_page.py  
 │   ├── checkbox_page.py    
 │   ├── dynamic_properties_page.py    
 │   ├── forms_page.py    
-├── utils   # Utility modules and helper functions
+├── utils   
 │   ├── logger.py           
-├── logs   # Captures and stores logs
+├── logs   
 │   ├── test.log  
 ├── allure-results/  
 ├── allure-report/   
