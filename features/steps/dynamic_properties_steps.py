@@ -13,30 +13,42 @@ def step_wait_for_visible_button(context):
     assert button.is_displayed(), f"Button Visible after 5 seconds is not visible"
     logger.info("'Visible after 5 seconds' button is now visible.")
 
-@given('the initial "color" of the button is recorded by the user')
-def step_fetch_initial_color(context):
+@given('the initial "color" of the "{button_name}" button is recorded by the user')
+def step_fetch_initial_color(context,button_name):
     try:
-        button = context.base_page.find_element(By.XPATH,context.dynamic_properties.COLOR_CHANGE_BUTTON)
+        button = context.base_page.find_element(By.XPATH,context.dynamic_properties.COLOR_CHANGE_BUTTON.format(button_name))
         context.initial_color = button.value_of_css_property("color")
         logger.info(f"Initial button color: {context.initial_color}")
     except Exception as e:
         logger.exception(f"Error while fetching CSS property : {e}")
         raise
 
-@given('the user waits for the button color transition')
-def step_wait_for_color_change(context):
+@then('all dynamic property buttons should be present on the page')
+def step_verify_dynamic_buttons(context):
     try:
-        context.dynamic_properties.wait_for_css_property_change(context.dynamic_properties.COLOR_CHANGE_BUTTON,'color',
+        for row in context.table:
+            option = row["Options"]
+            element = context.base_page.is_element_displayed(context.dynamic_properties.DYNAMIC_BUTTONS.format(option))
+            assert element, f"{option} menu not displayed"
+            logger.info(f"Verified presence of the menu: {option}")
+    except Exception:
+        logger.exception("One or more items not displayed")
+        raise
+
+@given('the user waits for the "{button_name}" button color transition')
+def step_wait_for_color_change(context,button_name):
+    try:
+        context.dynamic_properties.wait_for_css_property_change(context.dynamic_properties.COLOR_CHANGE_BUTTON.format(button_name),'color',
             context.initial_color)
         logger.info("Button color has been changed.")
     except TimeoutException:
         logger.error("Button color did not change within timeout", exc_info=True)
         raise AssertionError("Button color did not change within expected time")
 
-@given('the user captures the modified "color" value')
-def step_fetch_changed_color(context):
+@given('the user captures the modified "color" value for the "{button_name}" button')
+def step_fetch_changed_color(context,button_name):
     try:
-        button = context.base_page.find_element(By.XPATH, context.dynamic_properties.COLOR_CHANGE_BUTTON)
+        button = context.base_page.find_element(By.XPATH, context.dynamic_properties.COLOR_CHANGE_BUTTON.format(button_name))
         context.changed_color = button.value_of_css_property("color")
         logger.info(f"Changed button color: {context.changed_color}")
     except Exception as e:

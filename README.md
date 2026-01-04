@@ -14,7 +14,7 @@ Automation of [DEMOQA](https://demoqa.com/) site testing using Selenium and Page
 ```
 selenium-automation-demoqa/
 ├── features/              
-│   ├── steps/             # Step definitions for Behave
+│   ├── steps/             
 │   │   ├── base_steps.py  
 │   │   ├── book_store_steps.py  
 │   │   ├── checkbox_steps.py  
@@ -24,9 +24,9 @@ selenium-automation-demoqa/
 │   ├── checkbox.feature    
 │   ├── dynamic_properties.feature  
 │   ├── forms.feature       
-│   ├── environment.py   # Consists of hooks for Behave
+│   ├── environment.py   
 ├── pages  # Page Object Model (POM) implementation
-│   ├── base_page.py        # Common methods for all pages
+│   ├── base_page.py        
 │   ├── book_store_page.py  
 │   ├── checkbox_page.py    
 │   ├── dynamic_properties_page.py    
@@ -34,13 +34,13 @@ selenium-automation-demoqa/
 ├── utils   # Utility modules and helper functions
 │   ├── logger.py           
 ├── logs   # Captures and stores logs
-│   ├── test.log  # Captures test execution logs
-├── allure-results/  # Allure results folder
-├── allure-report/   # Allure report folder
+│   ├── test.log  
+├── allure-results/  
+├── allure-report/   
 ├── .gitignore           
-├── requirements.txt  # List of dependencies
-├── README.md          # Project documentation
-└── ├── result_demoqa.PNG # Execution report
+├── requirements.txt  
+├── README.md          
+└── ├── result_demoqa.PNG 
 ```
 
 ## Getting Started

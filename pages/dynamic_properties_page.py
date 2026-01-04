@@ -11,7 +11,8 @@ logger = get_logger(__name__)
 
 class DynamicPropertiesPage(BasePage):
     VISIBLE_AFTER_BUTTON = "//button[@id='visibleAfter']"
-    COLOR_CHANGE_BUTTON = "//button[@id='colorChange']"
+    COLOR_CHANGE_BUTTON = "//button[normalize-space()='{}']"
+    DYNAMIC_BUTTONS="//button[normalize-space()='{}']"
 
     def __init__(self, driver: WebDriver):
         self.driver = driver
@@ -27,7 +28,6 @@ class DynamicPropertiesPage(BasePage):
             element = driver.find_element(By.XPATH, self.locator)
             return element.value_of_css_property(self.css_property) != self.initial_value
 
-    # ---------- PUBLIC PAGE METHOD ----------
     def wait_for_css_property_change(
         self,
         locator: str,

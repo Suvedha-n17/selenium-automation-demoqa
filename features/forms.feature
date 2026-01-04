@@ -8,7 +8,7 @@ Feature: Validate fields in forms
       | Options       |
       | Practice Form |
     Then the user selects "Practice Form" section under "Forms"
-    Then verify user is navigated to "https://demoqa.com/automation-practice-form" page
+    Then verify user is navigated to "forms" page
 
   Scenario: TC005_Validate mandatory fields on empty submission
     When the user "submit" the form

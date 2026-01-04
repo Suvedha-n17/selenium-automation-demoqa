@@ -13,7 +13,7 @@ Feature: Validate book store module
 
   Scenario: TC008_Validate book list displayed in UI against API
     Then the user selects "Book Store" section under "Book Store Application"
-    Then verify user is navigated to "https://demoqa.com/books" page
+    Then verify user is navigated to "books" page
     When the user retrieves the list of books displayed in the UI
     When the Book Store API should be available
     And the user retrieves the list of books available in the API

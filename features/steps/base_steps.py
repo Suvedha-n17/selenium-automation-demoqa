@@ -26,15 +26,30 @@ def step_open_section(context, section_name):
         logger.error(f"Failed to click on '{section_name}' card: {e}")
         raise
 
-@then('verify user is navigated to "{expected_url}" page')
-def step_verify_user(context, expected_url):
+@then('verify user is navigated to "{page_name}" page')
+def step_verify_user(context, page_name):
     try:
+        config_key = page_name.lower().replace(" ", "_")
+        expected_url = context.config_data[config_key]
+
         WebDriverWait(context.driver, 20).until(
-        lambda d: expected_url in d.current_url
-    )
-        logger.info(f"Navigated successfully. Current URL: {context.driver.current_url}")
+            lambda d: expected_url in d.current_url
+        )
+        logger.info(
+            f"Navigated successfully to '{page_name}'. "
+            f"Current URL: {context.driver.current_url}"
+        )
+    except KeyError:
+        logger.error(
+            f"Page '{page_name}' not found in config.json. "
+            f"Expected key: '{config_key}'"
+        )
+        raise
     except TimeoutException:
-        logger.error(f"Timeout: '{expected_url}' not found in the URL within the wait time")
+        logger.error(
+            f"Timeout: Expected URL '{expected_url}' not found. "
+            f"Current URL: {context.driver.current_url}"
+        )
         raise
 
 @then('expand "{header_name}" card')

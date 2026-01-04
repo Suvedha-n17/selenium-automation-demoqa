@@ -4,7 +4,7 @@ Feature: Checkbox Tree Validation
     Given User launches the application
     And the user navigate to "Elements" section
     Then expand "Elements" card
-    Then verify user is navigated to "https://demoqa.com/elements" page
+    Then verify user is navigated to "elements" page
     Then expand "Elements" card
     Then all options should be displayed under "Elements"
       | Options               |

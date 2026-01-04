@@ -1,4 +1,7 @@
 {
   "base_url": "https://demoqa.com",
-  "elements": "https://demoqa.com/elements"
+  "elements": "https://demoqa.com/elements",
+  "dynamic_properties": "https://demoqa.com/dynamic-properties",
+  "books": "https://demoqa.com/books",
+  "forms": "https://demoqa.com/automation-practice-form"
 }
