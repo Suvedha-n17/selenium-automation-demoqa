@@ -3,6 +3,7 @@ import datetime
 import json
 import logging
 import re
+import shutil
 import allure
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
@@ -27,6 +28,13 @@ def before_all(context):
 
     # Project root
     context.base_dir = os.getcwd()
+
+    # ---------- CLEAN OLD ALLURE DATA ----------
+    for folder in ["allure-results", "allure-report"]:
+        folder_path = os.path.join(context.base_dir, folder)
+        if os.path.exists(folder_path):
+            shutil.rmtree(folder_path)
+            logger.info(f"Deleted old {folder}")
 
     # ---------- ALLURE RESULTS ----------
     context.allure_results_dir = os.path.join(context.base_dir, "allure-results")
